@@ -15,7 +15,7 @@ BIN_FILE := lib$(PROJECT).a
 CC := gcc
 LD := gcc
 
-CFLAGS := -I$(INC_DIR) -std=c99 -pedantic -Wall -Wextra -Wshadow -Wno-write-strings -m64 -O3
+CFLAGS := -I$(INC_DIR) -g -std=c99 -pedantic -Wall -Wextra -Wshadow -Wno-write-strings -m64
 LDFLAGS :=
 
 $(BIN_FILE): $(OBJ_FILES)

@@ -1,5 +1,6 @@
 #include "buf.h"
 #include "math.h"
+#include "log.h"
 #include "hc_internal.h"
 
 void* _buf_grow(const void* buf, u64 new_len, u64 elem_size) {
@@ -37,5 +38,8 @@ void _buf_remove(const void* buf, u64 idx, u64 elem_size) {
 
 	u64 byte_pos = elem_size * idx;
 	u64 elem_to_move_count = len - idx - 1;
-	memmove((u8*)buf + byte_pos, (u8*)buf + byte_pos + elem_size, elem_to_move_count);
+	memmove((u8*)buf + byte_pos, (u8*)buf + byte_pos + elem_size, elem_to_move_count * elem_size);
+	
+	BufHdr* hdr = _buf_hdr(buf);
+	hdr->len = len - 1;
 }

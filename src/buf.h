@@ -27,6 +27,8 @@ typedef struct {
 #define buf_empty(b)	   ((b) ? (buf_len(b) == 0 ? true : false) : 0)
 #define buf_last(b)		   ((b) ? ((!buf_empty(b)) ? (b)[buf_len(b)-1] : 0) : 0)
 
+#define buf_remove(b, n)   ((b) ? _buf_remove(b, n, sizeof(*(b))) : 0)
+
 #define buf_loop(b, c) for (u64 c = 0; c < buf_len(b); ++c)
 
 void* _buf_grow(const void* buf, u64 new_len, u64 elem_size);
