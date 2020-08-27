@@ -41,6 +41,21 @@ void* _malloc_dbg(const char* file, u64 line, u64 sz) {
 }
 
 void _free_dbg(const char* file, u64 line, void* p) {
+	buf_loop(allocations, a) {
+		if (allocations[a].pointer == p) {
+			buf_remove(allocations, a);
+			free(p);
+			return;
+		}
+	}
+
+	_log(
+		LOG_LEVEL_WARN,
+		file,
+		line,
+		"pointer (%p) isn't allocated using malloc();",
+		p
+		);
 }
 
 void _check_mem_errors(void) {

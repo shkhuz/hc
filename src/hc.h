@@ -7,6 +7,7 @@
 #include "log.h"
 #include "file.h"
 #include "mem.h"
+#include "str_intern.h"
 
 void hc_init(void);
 
