@@ -29,3 +29,13 @@ void _buf_shrink(const void* buf, u64 size) {
 
 	_buf_hdr(buf)->len -= size;
 }
+
+void _buf_remove(const void* buf, u64 idx, u64 elem_size) {
+	u64 len = buf_len(buf);
+	assert(idx < len);
+	assert(buf);
+
+	u64 byte_pos = elem_size * idx;
+	u64 elem_to_move_count = len - idx - 1;
+	memmove((u8*)buf + byte_pos, (u8*)buf + byte_pos + elem_size, elem_to_move_count);
+}

@@ -6,7 +6,7 @@
 #define HC_MEM_NO_DEBUG
 
 typedef struct {
-	char* file;
+	const char* file;
 	u64 line;
 	void* pointer;
 } AllocationInfo;
